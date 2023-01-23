@@ -10,13 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      CoverLetter.belongsTo(
+        models.User,
+        { foreignKey: 'userId' }
+      )
     }
   }
   CoverLetter.init({
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: { model: 'Users' },
+      onDelete: 'cascade',
+      hooks: true
     },
     resumeId: {
       type: DataTypes.INTEGER,
