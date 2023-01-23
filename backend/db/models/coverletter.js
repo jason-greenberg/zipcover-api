@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       CoverLetter.belongsTo(
         models.User,
         { foreignKey: 'userId' }
+      );
+      CoverLetter.belongsToMany(
+        models.Resume,
+        { through: models.Application, foreignKey: 'coverLetterId', otherKey: 'resumeId' }
       )
     }
   }
