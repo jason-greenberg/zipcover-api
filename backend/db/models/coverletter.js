@@ -14,12 +14,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   CoverLetter.init({
-    userId: DataTypes.INTEGER,
-    resumeId: DataTypes.INTEGER,
-    letterText: DataTypes.TEXT,
-    rating: DataTypes.INTEGER,
-    engine: DataTypes.STRING,
-    jobDescription: DataTypes.TEXT
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    resumeId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    letterText: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    rating: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    engine: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    jobDescription: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'CoverLetter',
