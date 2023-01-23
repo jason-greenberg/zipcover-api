@@ -1,5 +1,5 @@
 {
-  "name": "authenticate-me-for-render-deployment",
+  "name": "zipcover-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jason-greenberg/authenticate-me-for-render-deployment.git"
+    "url": "git+https://github.com/jason-greenberg/zipcover-api.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jason-greenberg/authenticate-me-for-render-deployment/issues"
+    "url": "https://github.com/jason-greenberg/zipcover-api/issues"
   },
-  "homepage": "https://github.com/jason-greenberg/authenticate-me-for-render-deployment#readme"
+  "homepage": "https://github.com/jason-greenberg/zipcover-api#readme"
 }
