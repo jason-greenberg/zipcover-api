@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         models.User,
         { foreignKey: 'userId' }
       )
-      Resume.hasMany(
-        models.CoverLetter,
-        { foreignKey: 'resumeId' }
-      )
     }
   }
   Resume.init({

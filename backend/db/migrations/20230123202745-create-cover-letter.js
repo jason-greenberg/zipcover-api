@@ -21,13 +21,6 @@ module.exports = {
         onDelete: 'cascade',
         hooks: true
       },
-      resumeId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: 'Resumes' },
-        onDelete: 'cascade',
-        hooks: true
-      },
       letterText: {
         type: Sequelize.TEXT,
         allowNull: false
