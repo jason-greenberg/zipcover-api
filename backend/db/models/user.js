@@ -40,7 +40,14 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
     static associate(models) {
-      // associations go here
+      User.hasMany(
+        models.CoverLetter,
+        { foreignKey: 'userId' }
+      );
+      User.hasMany(
+        models.Resume,
+        { foreignKey: 'userId' }
+      )
     }
   };
 
