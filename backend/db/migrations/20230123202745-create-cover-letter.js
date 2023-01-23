@@ -23,7 +23,10 @@ module.exports = {
       },
       resumeId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: { model: 'Resumes' },
+        onDelete: 'cascade',
+        hooks: true
       },
       letterText: {
         type: Sequelize.TEXT,

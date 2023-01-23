@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         models.User,
         { foreignKey: 'userId' }
       )
+      CoverLetter.belongsTo(
+        models.Resume,
+        { foreignKey: 'resumeId' }
+      )
     }
   }
   CoverLetter.init({
@@ -26,7 +30,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     resumeId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: { model: 'Resumes' },
+      onDelete: 'cascade',
+      hooks: true
     },
     letterText: {
       type: DataTypes.TEXT,
