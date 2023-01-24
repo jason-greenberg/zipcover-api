@@ -25,8 +25,16 @@ router.post(
   async (req, res, next) => {
     const userId = req.user.id;
     const { resumeId, jobDescription } = req.body;
-
     const resume = await Resume.findByPk(+resumeId);
+    
+    // 404 Error if resume does not exist in db
+    if (!resume) {
+      return res.status(404).json({
+        message: 'Resume not found',
+        statusCode: 404
+      });
+    }
+
     // 403 Forbidden Error if attached resume does not belong to user
     if (resume && resume.userId !== userId) {
       return res.status(403).json({
@@ -34,6 +42,8 @@ router.post(
         statusCode: 403
       })
     }
+
+
 
     // call gpt api
     try {
