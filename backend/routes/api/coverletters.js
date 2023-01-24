@@ -50,13 +50,25 @@ router.post(
       });
 
       // Create new application to coincide with new coverletter and resume
-      const newApplication = await Application.create({
+      await Application.create({
         userId,
         resumeId: +resumeId,
         coverLetterId: newCoverLetter.id
       });
 
-      res.json(newApplication);
+      // Retreive new application
+      const coverLetterId = newCoverLetter.id
+      const newApplication = await Application.findOne({
+        where: { resumeId, coverLetterId },
+        attributes: {
+          include: ['id']
+        }
+      });
+
+      res.json({
+        CoverLetter: newCoverLetter,
+        Application: newApplication
+      });
     } catch (error) {
       res.json(error);
     }
