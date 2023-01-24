@@ -1,7 +1,7 @@
 const router = require('express').Router()
-const { CoverLetter, Resume, Application } = require('../../db/models');
+const { CoverLetter } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
-const { requestCoverLetterFromGPT3 } = require('../../utils/gpt3');
+// const { requestCoverLetterFromGPT3 } = require('../../utils/gpt3');
 
 // Get all cover letters of current user
 router.get(

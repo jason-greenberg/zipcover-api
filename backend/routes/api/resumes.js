@@ -3,6 +3,15 @@ const { Resume, Application, CoverLetter } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { requestCoverLetterFromGPT3 } = require('../../utils/gpt3');
 
+// Get all resumes of current user
+router.get(
+  '/current',
+  requireAuth,
+  async (req, res, next) => {
+    
+  }
+)
+
 // Create new Cover Letter by resume id
 router.post(
   '/:id/coverletters',
