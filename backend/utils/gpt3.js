@@ -12,7 +12,7 @@ const requestCoverLetterFromGPT3 = async (resume = 'hi', jobDescription = 'be ab
     Highlight projects in the resume to explain qualifications. Include keywords from the job description in the cover letter if possible,
     but do it without copying entire sections verbatim. Resume: ${resume} | Job Description: ${jobDescription}`;
   
-  const max_tokens = 1000; // (property only used for text-davinci-003 model)
+  const max_tokens = 500; // (property only used for text-davinci-003 model)
   const temperature = 0.7 // Scale of 0 to 1, indicating less or more risk respectively
   console.log('This is the api, ', process.env.GPT_API_KEY );
 
