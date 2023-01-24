@@ -17,7 +17,7 @@ router.use('/users', usersRouter);
 
 router.use('/coverletters', coverLettersRouter);
 
-router.use('./resumes', resumesRouter);
+router.use('/resumes', resumesRouter);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
