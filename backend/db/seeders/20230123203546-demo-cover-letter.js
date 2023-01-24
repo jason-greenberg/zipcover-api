@@ -11,7 +11,6 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         userId: 1,
-        resumeId: 1,
         letterText: 'Dear Hiring Manager, This is a sample Cover Letter. Sincerely, Demo',
         rating: 5,
         engine: 'text-ada-001',
@@ -19,7 +18,6 @@ module.exports = {
       },
       {
         userId: 2,
-        resumeId: 2,
         letterText: 'Dear Hiring Manager, This is a sample Cover Letter. Sincerely, Fake',
         rating: 4,
         engine: 'text-ada-001',
@@ -27,7 +25,6 @@ module.exports = {
       },
       {
         userId: 3,
-        resumeId: 3,
         letterText: 'Dear Hiring Manager, This is a sample Cover Letter. Sincerely, Fake2',
         rating: 5,
         engine: 'text-ada-001',

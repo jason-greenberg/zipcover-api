@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('CoverLetters', {
+    await queryInterface.createTable('Applications', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,26 +16,21 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: { model: 'Users' },
         onDelete: 'cascade',
         hooks: true
       },
-      letterText: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      rating: {
+      resumeId: {
         type: Sequelize.INTEGER,
-        allowNull: true
+        references: { model: 'Resumes' },
+        onDelete: 'cascade',
+        hooks: true
       },
-      engine: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      jobDescription: {
-        type: Sequelize.TEXT,
-        allowNull: false
+      coverLetterId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'CoverLetters' },
+        onDelete: 'cascade',
+        hooks: true
       },
       createdAt: {
         allowNull: false,
@@ -50,7 +45,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "CoverLetters"
-    await queryInterface.dropTable('CoverLetters');
+    options.tableName = 'Applications'
+    await queryInterface.dropTable('Applications');
   }
 };

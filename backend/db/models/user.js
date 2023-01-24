@@ -47,6 +47,10 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(
         models.Resume,
         { foreignKey: 'userId' }
+      );
+      User.hasMany(
+        models.Application,
+        { foreignKey: 'userId' }
       )
     }
   };
