@@ -1,6 +1,5 @@
 // import environmental variables
 require('dotenv').config({ path: '../.env'});
-const { apiKey } = require('../config');
 const axios = require('axios');
 
 const requestCoverLetterFromGPT3 = async (resume = 'hi', jobDescription = 'be able to say hi') => {
