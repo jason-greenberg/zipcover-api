@@ -13,7 +13,7 @@ const requestCoverLetterFromGPT3 = async (resume = 'hi', jobDescription = 'be ab
   
   const max_tokens = 500; // (property only used for text-davinci-003 model)
   const temperature = 0.7 // Scale of 0 to 1, indicating less or more risk respectively
-  console.log('This is the api, ', process.env.GPT_API_KEY );
+  // console.log('This is the api, ', process.env.GPT_API_KEY ); // Debugging purposes
 
   const response = await axios.post('https://api.openai.com/v1/completions', {
     model,
