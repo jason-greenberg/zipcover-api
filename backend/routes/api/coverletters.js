@@ -36,8 +36,13 @@ router.post(
     }
 
     // call gpt api
-    const data = await requestCoverLetterFromGPT3(resume, 'say hello')
-    res.json(data.choices[0].text);
+    try {
+      const data = await requestCoverLetterFromGPT3(resume, 'say hello')
+      res.json(data.choices[0].text);
+    } catch (error) {
+      res.json(error.response);
+    }
+
   }
 )
 
