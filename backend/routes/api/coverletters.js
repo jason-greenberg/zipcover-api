@@ -1,6 +1,7 @@
 const router = require('express').Router()
-const { CoverLetter } = require('../../db/models');
+const { CoverLetter, Resume } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
+const { requestCoverLetterFromGPT3 } = require('../../utils/gpt3');
 
 // Get all cover letters of current user
 router.get(
@@ -23,8 +24,20 @@ router.post(
   requireAuth,
   async (req, res, next) => {
     const userId = req.user.id;
+    const { resumeId } = req.body;
 
-    
+    const resume = await Resume.findByPk(+resumeId);
+    // 403 Forbidden Error if attached resume does not belong to user
+    if (resume && resume.userId !== userId) {
+      return res.status(403).json({
+        message: 'Forbidden, resume must belong to user',
+        statusCode: 403
+      })
+    }
+
+    // call gpt api
+    const data = await requestCoverLetterFromGPT3('hello', 'say hello')
+    res.json(data);
   }
 )
 
