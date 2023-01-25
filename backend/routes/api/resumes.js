@@ -94,9 +94,26 @@ router.post(
     const userId = +req.user.id;
     const { resumeText, positionType, skillLevel } = req.body;
 
-    
-  }
-)
 
-  module.exports = router;
+    // Create new resume in db
+    try {
+      const newResume = await Resume.create({
+        userId,
+        resumeText,
+        positionType,
+        skillLevel
+      });
+
+      res.json(newResume);
+    } catch (error) {
+      console.log(error)
+      res.status(400).json({
+        message: 'Error adding resume to database',
+        statusCode: 400
+      });
+    }
+  }
+);
+
+module.exports = router;
   
