@@ -37,7 +37,7 @@ const requestCoverLetterFromGPT3 = async (resume = 'test', jobDescription = 'tes
       'Content-Type': 'application/json'
     }
   });
-
+  console.log(response.data);
   return response.data;
 }
 
