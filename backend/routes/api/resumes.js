@@ -8,9 +8,16 @@ router.get(
   '/current',
   requireAuth,
   async (req, res, next) => {
+    const userId = req.user.id;
     
+    // Query db for user's coverletters
+    const userResumes = await Resume.findAll({ where: { userId }});
+
+    // Return cover letters
+    res.json(userResumes);
   }
-)
+);
+
 
 // Create new Cover Letter by resume id
 router.post(
@@ -29,7 +36,7 @@ router.post(
         statusCode: 404
       });
     }
-
+    
     // 403 Forbidden Error if attached resume does not belong to user
     if (resume && resume.userId !== userId) {
       return res.status(403).json({
@@ -37,13 +44,13 @@ router.post(
         statusCode: 403
       })
     }
-
+    
     // call gpt api
     try {
       const data = await requestCoverLetterFromGPT3(resume, jobDescription);
       const letterText = data.choices[0].text;
       const engine = data.model;
-
+      
       // Create new coverletter in db
       const newCoverLetter = await CoverLetter.create({
         userId,
@@ -51,14 +58,14 @@ router.post(
         engine,
         jobDescription
       });
-
+      
       // Create new application to coincide with new coverletter and resume
       await Application.create({
         userId,
         resumeId: +resumeId,
         coverLetterId: newCoverLetter.id
       });
-
+      
       // Retreive new application
       const coverLetterId = newCoverLetter.id
       const newApplication = await Application.findOne({
@@ -67,7 +74,7 @@ router.post(
           include: ['id']
         }
       });
-
+      
       res.json({
         CoverLetter: newCoverLetter,
         Application: newApplication
@@ -75,8 +82,21 @@ router.post(
     } catch (error) {
       res.json(error);
     }
+    
+  }
+)
+  
+// Create new Resume
+router.post(
+  '/',
+  requireAuth,
+  async (req, res, next) => {
+    const userId = +req.user.id;
+    const { resumeText, positionType, skillLevel } = req.body;
 
+    
   }
 )
 
-module.exports = router;
+  module.exports = router;
+  
