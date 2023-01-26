@@ -18,4 +18,21 @@ router.get(
   }
 );
 
+// Get cover letter by id
+router.get(
+  '/:id',
+  requireAuth,
+  async (req, res, next) => {
+    const id = +req.params.id;
+
+    // Retreive cover letter from db
+    const coverLetter = await CoverLetter.findByPk(id);
+    
+    
+    // If no 
+
+    res.json(coverLetter)
+  }
+)
+
 module.exports = router;

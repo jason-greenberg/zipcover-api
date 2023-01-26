@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Resume, Application, CoverLetter } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
+const { checkFor404NotFoundError, checkFor403ForbiddenError } = require('../../utils/error-handling');
 const { requestCoverLetterFromGPT3 } = require('../../utils/gpt3');
 
 // Get all resumes of current user
