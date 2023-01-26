@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Resume, Application, CoverLetter } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
-const { checkFor404NotFoundError, checkFor403ForbiddenError } = require('../../utils/error-handling');
+const { send404NotFoundError, send403ForbiddenError } = require('../../utils/error-handling');
 const { requestCoverLetterFromGPT3 } = require('../../utils/gpt3');
 
 // Get all resumes of current user
@@ -32,18 +32,14 @@ router.post(
     
     // 404 Error if resume does not exist in db
     if (!resume) {
-      return res.status(404).json({
-        message: 'Resume not found',
-        statusCode: 404
-      });
+      send404NotFoundError(res, 'resume');
+      return;
     }
     
     // 403 Forbidden Error if attached resume does not belong to user
-    if (resume && resume.userId !== userId) {
-      return res.status(403).json({
-        message: 'Forbidden, resume must belong to user',
-        statusCode: 403
-      })
+    if (resume.userId !== userId) {
+      send403ForbiddenError(res, 'resume');
+      return;
     }
     
     // call gpt api
