@@ -23,7 +23,7 @@ app.use(express.json());
 if (isProduction) {
   app.use(
     helmet.crossOriginResourcePolicy({
-      policy: 'same-origin'
+      policy: 'cross-origin'
     })
   );
 } else {
