@@ -20,19 +20,19 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Security Middleware
-if (isProduction) {
-  app.use(
-    helmet.crossOriginResourcePolicy({
-      policy: 'cross-origin'
-    })
-  );
-} else {
+// if (isProduction) {
+//   app.use(
+//     helmet.crossOriginResourcePolicy({
+//       policy: 'cross-origin'
+//     })
+//   );
+// } else {
   app.use(cors({
     origin: [process.env.FRONTEND_URL],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }));
-}
+// }
 
 // Set the _csrf token and create req.csrfToken method
 app.use(
