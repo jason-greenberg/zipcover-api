@@ -6,22 +6,21 @@ I look forward to the opportunity of speaking with you further regarding this po
 Sincerely,
 [Your Name]`
 
-const prompt = (resume, jobDescription) => { 
-  return `You will act as an expert in generating relatable cover letters for junior web developers. I will give you a resume and a job description to write the cover letter with. The letter should only be two paragraphs. Instuctions for paragraph 1:
-  - The tone should be casual, but warm. The tone should not be cliche, idealistic, or overly grandious in scope. Keep it small and modest.
-  - The first paragraph should be creative, and personal.
-  - Be specific, use articles about the company accomplishing specific things if necessary.
-  - The first paragraph should be relatable and specifically about something the company is doing/ has accomplished that I value or personally connect with.
-  - Not generic-sounding, it should sound like something that could be said at a networking conference and be meaningful. Should not sound like a template.
-  - Look at what the company does and use that to inform this paragraph.
-  - Next highlight projects and skills in the resume to explain qualifications in the second paragrah, but avoid making a list with lots of commas. 
-  Resume: ${resume} 
-  Job Description: ${jobDescription}
+const promptOne = (resume, jobDescription) => {
+  return `You will act as an expert in generating relatable cover letters for junior web developers. I will give you a resume and a job description to write the cover letter with. The letter should only be two paragraphs
+  Resume: ${resume}
+  Job Description ${jobDescription}
   
-  Example cover letter:
-  ${exampleCoverLetter}
+  `
+}
+
+const promptTwo = (coverLetter, companyDetails) => { 
+  return `You will act as an expert in editing cover letters for junior web developers, who wants to include detail about why, on a personal interest level, a candidate is a good fit for a role. 
+  Add 1 paragraph to the beginning of this included coverletter to say why the developer is interested in working for the company based on the provided company details:
+  Coverletter: ${coverLetter}
+  Additional company details: ${companyDetails}
 
   `
 }
 
-module.exports = { prompt }
+module.exports = { promptOne, promptTwo }
