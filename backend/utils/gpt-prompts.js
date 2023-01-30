@@ -17,7 +17,7 @@ const promptOne = (resume, jobDescription) => {
 const promptTwo = (coverLetter, companyDetails) => { 
   return `You will act as an expert in editing cover letters for junior web developers, who wants to include detail about why, on a personal interest level, a candidate is a good fit for a role. 
   Add 1 paragraph to the beginning of this included coverletter to say why the developer is interested in working for the company based on the provided company details.
-  Do not plagrize anything below directly, use synonyms and new phrases only:
+  Do not plagrize anything below directly, use synonyms and new phrases only, and do not say the word 'junior':
   Coverletter: ${coverLetter}
   Additional company details: ${companyDetails}
 
