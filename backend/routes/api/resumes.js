@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Resume, Application, CoverLetter } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { send404NotFoundError, send403ForbiddenError } = require('../../utils/error-handling');
-const { requestCoverLetterFromGPT3 } = require('../../utils/gpt3');
+const { requestCoverLetterFromGPT3, refineCoverLetterWithGPT3 } = require('../../utils/gpt3');
 
 // Get all resumes of current user
 router.get(
@@ -26,7 +26,7 @@ router.post(
   requireAuth,
   async (req, res, next) => {
     const userId = req.user.id;
-    const { jobDescription } = req.body;
+    const { jobDescription, companyDetails } = req.body;
     const resumeId = req.params.id;
     const resume = await Resume.findByPk(+resumeId);
     
@@ -41,19 +41,22 @@ router.post(
       send403ForbiddenError(res, 'resume');
       return;
     }
-    
     // call gpt api
     try {
       const data = await requestCoverLetterFromGPT3(resume, jobDescription);
       const letterText = data.choices[0].text;
       const engine = data.model;
+      console.log('hi')
+      const editedRequest = await refineCoverLetterWithGPT3(letterText, companyDetails);
+      const personalInterestParagraph = editedRequest.choices[0].text;
       
       // Create new coverletter in db
       const newCoverLetter = await CoverLetter.create({
         userId,
-        letterText,
+        letterText: personalInterestParagraph + letterText,
         engine,
-        jobDescription
+        jobDescription,
+        companyDetails
       });
       
       // Create new application to coincide with new coverletter and resume
