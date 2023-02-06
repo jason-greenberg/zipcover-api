@@ -7,7 +7,7 @@ Sincerely,
 [Your Name]`
 
 const promptOne = (resume, jobDescription) => {
-  return `You will act as an expert in generating relatable cover letters for junior web developers. I will give you a resume and a job description to write the cover letter with. The letter should only be two paragraphs. Do not use the word 'junior'.
+  return `You will act as an expert in generating relatable cover letters for junior web developers. I will give you a resume and a job description to write the cover letter with. Avoid repeating any phrases given in your prompts verbatim. The letter should only be two paragraphs. Do not use the word 'junior'.
   Resume: ${resume}
   Job Description ${jobDescription}
   
